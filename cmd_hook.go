@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 )
 
@@ -29,6 +30,7 @@ var CmdHook = &Cmd{
 			return err
 		}
 
+		selfPath = strings.Replace(selfPath, "\\", "/", -1)
 		ctx := HookContext{selfPath}
 
 		shell := DetectShell(target)
