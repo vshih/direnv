@@ -8,6 +8,7 @@ clone_folder: c:\gopath\src\github.com\direnv\direnv
 
 environment:
   GOPATH: c:\gopath
+  MSYS: winsymlinks:nativestrict
 
 stack: go 1.10
 
