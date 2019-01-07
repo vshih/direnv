@@ -1,3 +1,5 @@
+// +build !windows
+
 package main
 
 import (
@@ -10,7 +12,7 @@ func TestSomething(t *testing.T) {
 		t.Fail()
 	}
 	paths = eachDir("/")
-	if len(paths) != 1 && paths[0] != "/" {
+	if len(paths) < 1 || paths[0] != "/" || len(paths) > 1 {
 		t.Fail()
 	}
 }
