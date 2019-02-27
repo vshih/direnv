@@ -9,6 +9,8 @@ clone_folder: c:\gopath\src\github.com\direnv\direnv
 environment:
   GOPATH: c:\gopath
   MSYS: winsymlinks:nativestrict
+  # Disable symlink-setup of GOPATH within GNUmakefile.
+  DISABLE_GOPATH_SYMLINK: 1
 
 stack: go 1.10
 

@@ -2,8 +2,10 @@
 .direnv
 .gopath
 /direnv
+/direnv.exe
 /direnv.test
 /dist
 /test/allow
 /test/direnv
 /test/config/direnv/allow
+/test/scenarios/inherited/.envrc

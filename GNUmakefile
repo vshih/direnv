@@ -27,21 +27,27 @@ SHELL = bash
 .PHONY: all
 all: build man
 
+ifneq ($(DISABLE_GOPATH_SYMLINK),1)
 export GOPATH = $(CURDIR)/.gopath
+endif
 export GO15VENDOREXPERIMENT=1
 
+ifeq ($(DISABLE_GOPATH_SYMLINK),1)
+base = .
+else
 # Creates the GOPATH for us
 base = $(GOPATH)/src/$(PACKAGE)
 $(base):
 	@mkdir -p "$(dir $@)"
 	@ln -sf "$(CURDIR)" "$@"
+endif
 
 ############################################################################
 # Build
 ############################################################################
 
 .PHONY: build
-build: direnv
+build: $(exe)
 
 .PHONY: clean
 clean:
@@ -65,8 +71,8 @@ ifdef GO_LDFLAGS
 	GO_FLAGS += -ldflags '$(GO_LDFLAGS)'
 endif
 
-direnv: stdlib.go *.go | $(base)
-	cd "$(base)" && $(GO) build $(GO_FLAGS) -o $(exe)
+$(exe): stdlib.go *.go | $(base)
+	cd "$(base)" && $(GO) build $(GO_FLAGS) -o $@
 
 stdlib.go: stdlib.sh
 	cat $< | ./script/str2go main STDLIB $< > $@
