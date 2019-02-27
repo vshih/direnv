@@ -259,7 +259,7 @@ direnv_load() {
   # backup and restore watches in case of nix-shell --pure
   local __watches=$DIRENV_WATCHES
 
-  exports=$("$direnv" apply_dump <("$@"))
+  exports=$("$@" | "$direnv" apply_dump -)
   local es=$?
   if [[ $es -ne 0 ]]; then
     return $es

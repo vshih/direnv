@@ -47,6 +47,8 @@ var CmdExpandPath = &Cmd{
 			path = expandPath(path, relTo)
 		}
 
+		path = ToUnixDir(path)
+
 		_, err = fmt.Println(path)
 
 		return

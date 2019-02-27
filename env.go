@@ -24,6 +24,10 @@ func GetEnv() Env {
 		env[key] = value
 	}
 
+	if pathList, exists := env["PATH"]; exists {
+		env["PATH"] = ToUnixPathList(pathList)
+	}
+
 	return env
 }
 

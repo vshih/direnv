@@ -261,7 +261,7 @@ const STDLIB = "#!/usr/bin/env bash\n" +
 	"  # backup and restore watches in case of nix-shell --pure\n" +
 	"  local __watches=$DIRENV_WATCHES\n" +
 	"\n" +
-	"  exports=$(\"$direnv\" apply_dump <(\"$@\"))\n" +
+	"  exports=$(\"$@\" | \"$direnv\" apply_dump -)\n" +
 	"  local es=$?\n" +
 	"  if [[ $es -ne 0 ]]; then\n" +
 	"    return $es\n" +

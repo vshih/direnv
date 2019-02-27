@@ -127,21 +127,29 @@ test_start "dump"
   direnv_eval
   test_eq "$LS_COLORS" "*.ogg=38;5;45:*.wav=38;5;45"
   test_eq "$THREE_BACKSLASHES" '\\\'
-  test_eq "$LESSOPEN" "||/usr/bin/lesspipe.sh %s"
+  if [[ $MSYSTEM = MSYS ]]; then
+    # MSYS performs path conversion in environment variables.
+    test_eq "$LESSOPEN" "||$(cygpath --absolute --mixed /usr/bin/lesspipe.sh) %s"
+  else
+    test_eq "$LESSOPEN" "||/usr/bin/lesspipe.sh %s"
+  fi
 test_stop
 
-test_start "empty-var"
-  direnv_eval
-  test_neq "${FOO-unset}" "unset"
-  test_eq "${FOO}" ""
-test_stop
+# Windows doesn't allow empty environment variables.
+if [[ $OS != Windows_NT ]]; then
+  test_start "empty-var"
+    direnv_eval
+    test_neq "${FOO-unset}" "unset"
+    test_eq "${FOO}" ""
+  test_stop
 
-test_start "empty-var-unset"
-  export FOO=""
-  direnv_eval
-  test_eq "${FOO-unset}" "unset"
-  unset FOO
-test_stop
+  test_start "empty-var-unset"
+    export FOO=""
+    direnv_eval
+    test_eq "${FOO-unset}" "unset"
+    unset FOO
+  test_stop
+fi
 
 test_start "in-envrc"
   direnv_eval

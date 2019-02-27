@@ -39,3 +39,11 @@ func eachDir(path string) (paths []string) {
 
 	return
 }
+
+func ToUnixDir(path string) string {
+	return path
+}
+
+func ToUnixPathList(pathList string) string {
+	return pathList
+}

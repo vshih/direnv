@@ -50,3 +50,23 @@ func eachDir(path string) (paths []string) {
 
 	return
 }
+
+func ToUnixDir(path string) string {
+	if os.ExpandEnv("$MSYSTEM") == "MSYS" {
+		// Strip any colons.
+		re := regexp.MustCompile("^([A-Z]):[/\\\\]")
+		path = re.ReplaceAllString(path, "/$1/")
+	}
+
+	return strings.Replace(path, "\\", "/", -1)
+}
+
+func ToUnixPathList(pathList string) string {
+	split := strings.Split(pathList, ";")
+
+	for i, p := range split {
+		split[i] = ToUnixDir(p)
+	}
+
+	return strings.Join(split, ":")
+}

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 )
 
 // `direnv apply_dump FILE`
@@ -21,7 +22,12 @@ var CmdApplyDump = &Cmd{
 		}
 		filename := args[1]
 
-		dumped, err := ioutil.ReadFile(filename)
+		var dumped []byte
+		if filename == "-" {
+			dumped, err = ioutil.ReadAll(os.Stdin)
+		} else {
+			dumped, err = ioutil.ReadFile(filename)
+		}
 		if err != nil {
 			return err
 		}
