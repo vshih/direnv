@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/direnv/direnv/gzenv"
+	"github.com/vshih/direnv/gzenv"
 )
 
 // `direnv show_dump`

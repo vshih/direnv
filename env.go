@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/direnv/direnv/gzenv"
+	"github.com/vshih/direnv/gzenv"
 )
 
 type Env map[string]string

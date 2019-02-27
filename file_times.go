@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/direnv/direnv/gzenv"
+	"github.com/vshih/direnv/gzenv"
 )
 
 type FileTime struct {

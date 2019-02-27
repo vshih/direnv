@@ -4,7 +4,7 @@ build: off
 # fetch repository as zip archive
 shallow_clone: true
 
-clone_folder: c:\gopath\src\github.com\direnv\direnv
+clone_folder: c:\gopath\src\github.com\vshih\direnv
 
 environment:
   GOPATH: c:\gopath

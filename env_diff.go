@@ -3,7 +3,7 @@ package main
 import (
 	"strings"
 
-	"github.com/direnv/direnv/gzenv"
+	"github.com/vshih/direnv/gzenv"
 )
 
 // A list of keys we don't want to deal with

@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 
-	"github.com/direnv/direnv/gzenv"
+	"github.com/vshih/direnv/gzenv"
 )
 
 // gzenvShell is not a real shell. used for internal purposes.
