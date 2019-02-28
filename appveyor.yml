@@ -11,6 +11,9 @@ environment:
 
 stack: go 1.10
 
+install:
+  - set PATH=C:\msys64\usr\bin;%PATH%
+
 before_test:
   - go vet ./...
 
