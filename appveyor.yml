@@ -13,7 +13,11 @@ environment:
 stack: go 1.10
 
 install:
-  - set PATH=C:\msys64\usr\bin;%PATH%
+  - mkdir C:\msys64\usr\local\bin
+  - set PATH=C:\msys64\usr\bin;C:\msys64\usr\local\bin;%PATH%
+  - curl -O https://storage.googleapis.com/shellcheck/shellcheck-stable.zip
+  - unzip shellcheck-stable.zip shellcheck-stable.exe
+  - move shellcheck-stable.exe C:\msys64\usr\local\bin\shellcheck.exe
 
 before_test:
   - go vet ./...
